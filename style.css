@@ -44,6 +44,9 @@ body.menu-open {
   padding: 0 1.5rem;
 }
 
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN
+   ========================================================================== */
 #main-header {
   position: sticky;
   top: 0;
@@ -137,6 +140,17 @@ body.menu-open {
   position: relative;
 }
 
+.dropdown-arrow {
+  display: inline-block;
+  font-size: 0.65rem;
+  margin-left: 0.35rem;
+  transition: var(--transition);
+}
+
+.dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
 .dropdown-toggle {
   background: none;
   border: none;
@@ -158,6 +172,7 @@ body.menu-open {
   left: 0;
   background: var(--dark-surface);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   min-width: 230px;
   border-radius: var(--radius);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -232,6 +247,9 @@ body.menu-open {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ==========================================================================
+   BARRA DE CATEGORÍAS (EN LA CARTA)
+   ========================================================================== */
 .category-bar {
   position: sticky;
   top: 76px;
@@ -280,19 +298,35 @@ body.menu-open {
   transform: translateY(-2px);
 }
 
+/* ==========================================================================
+   HERO / BANNER PRINCIPAL
+   ========================================================================== */
 .hero, .menu-hero {
   position: relative;
-  background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 7rem 1.5rem 6rem;
+  overflow: hidden;
 }
 
 .menu-hero {
   padding: 4.5rem 1.5rem 3.5rem;
 }
 
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.9) 100%);
+  z-index: 1;
+}
+
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -331,25 +365,45 @@ body.menu-open {
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: white;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white !important;
   text-decoration: none;
   padding: 0.85rem 1.8rem;
   border-radius: 50px;
   font-weight: 700;
   transition: var(--transition);
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
 }
 
 .btn-outline {
-  border: 2px solid white;
-  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: white !important;
   text-decoration: none;
   padding: 0.85rem 1.8rem;
   border-radius: 50px;
   font-weight: 700;
   transition: var(--transition);
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
 }
 
+.btn-outline:hover {
+  background-color: white;
+  color: var(--dark) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SECCIONES Y TARJETAS
+   ========================================================================== */
 .highlights {
   padding: 4rem 0;
   background-color: #ffffff;
@@ -419,6 +473,12 @@ body.menu-open {
   box-shadow: var(--shadow-sm);
   border: 1px solid #e2e8f0;
   position: relative;
+  transition: var(--transition);
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .item-card.featured {
@@ -440,8 +500,17 @@ body.menu-open {
 .item-header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
   margin-bottom: 0.8rem;
-  padding-right: 4rem;
+  padding-right: 0;
+}
+
+.item-header h3 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.15rem;
+  color: var(--dark);
+  line-height: 1.3;
 }
 
 .price {
@@ -449,8 +518,35 @@ body.menu-open {
   font-size: 1.3rem;
   font-weight: 800;
   color: var(--primary);
+  white-space: nowrap;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.btn-large {
+  background-color: var(--dark);
+  color: white !important;
+  text-decoration: none;
+  padding: 1rem 2.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-block;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+}
+
+.btn-large:hover {
+  background-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(230, 57, 70, 0.35);
+}
+
+/* ==========================================================================
+   NOSOTROS Y UBICACIÓN
+   ========================================================================== */
 .about-section {
   padding: 5rem 0;
   background-color: #ffffff;
@@ -463,12 +559,42 @@ body.menu-open {
   align-items: center;
 }
 
+.about-image-box {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
 .about-image-box img {
   width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
 }
 
+.location-section {
+  padding: 5rem 0;
+  background-color: var(--dark);
+  color: white;
+  text-align: center;
+}
+
+.location-box {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.location-address {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 0.8rem 0 1.5rem;
+}
+
+/* ==========================================================================
+   CARTA Y MENÚS
+   ========================================================================== */
 .menu-page {
   padding-top: 2.5rem;
 }
@@ -504,6 +630,12 @@ body.menu-open {
   padding: 1.2rem 1.4rem;
   border: 1px solid #e2e8f0;
   box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.menu-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .highlight-item {
@@ -560,13 +692,6 @@ body.menu-open {
   border-radius: 30px;
 }
 
-.location-section {
-  padding: 5rem 0;
-  background-color: var(--dark);
-  color: white;
-  text-align: center;
-}
-
 footer {
   background-color: #090d16;
   color: #94a3b8;
@@ -575,7 +700,44 @@ footer {
   font-size: 0.88rem;
 }
 
-/* 4. Menú Lateral Deslizante (Drawer) para móviles */
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-box h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 7rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.error-box h2 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.error-box p {
+  color: #94a3b8;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   ADAPTACIÓN PARA DISPOSITIVOS MÓVILES (< 768px)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -649,7 +811,50 @@ footer {
     justify-content: flex-start;
   }
 
+  .hero {
+    padding: 5.5rem 1.25rem 4rem;
+  }
+
   .hero h1, .menu-hero h1 {
-    font-size: 2.3rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  .hero p, .menu-hero p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .preview-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-card {
+    padding: 1.4rem;
+  }
+
+  .item-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+
+  .item-header {
+    flex-direction: row;
+    align-items: center;
   }
 }
